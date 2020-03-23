@@ -1,0 +1,9 @@
+*/node_modules/
+*/gulpfile.babel.js
+
+.idea
+.DS_Store
+*/.DS_Store
+.AppleDouble
+.LSOverride
+
