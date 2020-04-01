@@ -1,7 +1,7 @@
 {
-  "name": "front-builder",
+  "name": "agenda",
   "version": "1.0.0",
-  "description": "Boilerplate for blade templating, scss compilation and JS Transpilation",
+  "description": "customizable agenda for different kind of booking",
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
@@ -33,8 +33,7 @@
     "JS",
     "gulp"
   ],
-  "author": "Gwenael Robert",
-  "license": "MIT",
+  "author": "MrP84",
   "dependencies": {
     "@babel/cli": "^7.6.3",
     "@babel/core": "^7.6.3",
@@ -66,6 +65,7 @@
     "node-sass": "^4.12.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "prop-types": "^15.6.2",
     "sass-loader": "^7.1.0",
     "uglifyjs-webpack-plugin": "^2.1.3",
     "webpack": "^4.41.0",
