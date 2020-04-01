@@ -1,0 +1,28 @@
+.header {
+  position: relative;
+  @include flex-row(space-between, center);
+
+  &-logo {
+    position: relative;
+    width: 150px;
+
+    img {
+      @include img-full;
+    }
+  }
+
+  &-menu {
+    &--items {
+      display: none;
+
+      @include media-min(XL) {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+
+    &--item {
+      margin: 0 20px;
+    }
+  }
+}

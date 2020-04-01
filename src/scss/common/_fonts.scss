@@ -1,0 +1,19 @@
+
+// base font
+$font-family-base: 'Roboto';
+$font-family-title: 'Rokkitt';
+$font-family-icons: 'mrp';
+
+// os fonts
+$font-ios-light: -apple-system-body, -apple-system, 'HelveticaNeueLight', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', 'Helvetica Neue', 'TeXGyreHerosLight';
+$font-ios-regular: -apple-system-body, -apple-system, 'HelveticaNeue', 'Helvetica Neue', 'TeXGyreHerosRegular';
+$font-ios-bold: -apple-system-body, -apple-system, 'HelveticaNeueBold', 'HelveticaNeue-Bold', 'Helvetica Neue Bold', 'HelveticaNeue', 'Helvetica Neue', 'TeXGyreHerosBold';
+
+$font-android-light: 'RobotoLight', 'Roboto-Light', 'Roboto Light', 'Roboto', 'TeXGyreHerosLight', 'Noto', 'Noto Sans', 'Noto', 'Droid Sans';
+$font-android-regular: 'Roboto', 'RobotoRegular', 'Roboto-Regular', 'Roboto Regular', 'TeXGyreHerosRegular', 'Noto', 'Noto Sans', 'Noto', 'Droid Sans';
+$font-android-bold: 'RobotoBold', 'Roboto-Bold', 'Roboto Bold', 'Roboto', 'TeXGyreHerosBold', 'Noto', 'Noto Sans', 'Noto', 'Droid Sans';
+
+// fallbacks
+$font-fallback-sansserif: HelveticaNeue, Roboto, SegoeWP, Verdana, Helvetica, Tahoma, Geneva, Arial, sans-serif;
+$font-fallback-serif: 'Times New Roman', 'Palatino Linotype', 'Book Antiqua', Palatino, Times, Georgia, serif;
+

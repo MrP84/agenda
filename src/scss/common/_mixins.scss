@@ -1,0 +1,187 @@
+@mixin flex-row($justify, $align) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin flex-column($justify, $align) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin img-full {
+  width: 100%;
+  height: auto;
+}
+
+@mixin font-family-base-regular {
+  font-family: $font-family-base, $font-android-regular, $font-ios-regular, $font-fallback-sansserif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin font-family-base-regular-italic {
+  font-family: $font-family-base, $font-android-regular, $font-ios-regular, $font-fallback-sansserif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+@mixin font-family-base-bold {
+  font-family: $font-family-base, $font-android-bold, $font-ios-bold, $font-fallback-sansserif;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@mixin font-family-title-regular {
+  font-family: $font-family-title, $font-android-regular, $font-ios-regular, $font-fallback-sansserif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin font-family-title-bold {
+  font-family: $font-family-title, $font-android-bold, $font-ios-bold, $font-fallback-sansserif;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+@mixin font-family-icons {
+  font-family: $font-family-icons;
+  font-style: normal;
+  font-weight: normal;
+}
+
+@mixin media-min($breakpoint: M, $html-class: null, $print: null) {
+  $rule: "min-width: 320px";
+
+  @if $breakpoint == M {
+    $rule: $screen-m-rule-min;
+  }
+  @else if $breakpoint == L {
+    $rule: $screen-l-rule-min;
+  }
+  @else if $breakpoint == XL {
+    $rule: $screen-xl-rule-min;
+  }
+  @else if $breakpoint == XXL {
+    $rule: $screen-xxl-rule-min;
+  }
+  @else if $breakpoint == XXXL {
+    $rule: $screen-xxxl-rule-min;
+  }
+  @else {
+    $rule: "min-width: #{$breakpoint}";
+  }
+
+  $query: "screen and (" + $rule + ") ";
+
+  @media #{$query} {
+    @if $html-class {
+      html.#{$html-class} & {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  @if $print == true {
+    @media print {
+      @content;
+    }
+  }
+}
+
+@mixin media-max($breakpoint: M, $html-class: null, $print: null) {
+  $rule: "max-width: 1920px";
+
+  @if $breakpoint == S {
+    $rule: $screen-s-rule-max;
+  }
+  @else if $breakpoint == M {
+    $rule: $screen-m-rule-max;
+  }
+  @else if $breakpoint == L {
+    $rule: $screen-l-rule-max;
+  }
+  @else if $breakpoint == XL {
+    $rule: $screen-xl-rule-max;
+  }
+  @else if $breakpoint == XXL {
+    $rule: $screen-xxl-rule-max;
+  }
+  @else {
+    $rule: "max-width: #{$breakpoint}";
+  }
+
+  $query: "screen and (" + $rule + ") ";
+
+  @media #{$query} {
+    @if $html-class {
+      html.#{$html-class} & {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  @if $print == true {
+    @media print {
+      @content;
+    }
+  }
+}
+
+@mixin media-min-max($breakpoint-min: M, $breakpoint-max: $breakpoint-min, $html-class: null, $print: null) {
+  $rule-min: "min-width: 320px";
+  $rule-max: "max-width: 1920px";
+
+  @if $breakpoint-min == M {
+    $rule-min: $screen-m-rule-min;
+  }
+  @else if $breakpoint-min == L {
+    $rule-min: $screen-l-rule-min;
+  }
+  @else if $breakpoint-min == XL {
+    $rule-min: $screen-xl-rule-min;
+  }
+  @else if $breakpoint-min == XXL {
+    $rule-min: $screen-xxl-rule-min;
+  }
+
+  @if $breakpoint-max == M {
+    $rule-max: $screen-m-rule-max;
+  }
+  @else if $breakpoint-max == L {
+    $rule-max: $screen-l-rule-max;
+  }
+  @else if $breakpoint-max == XL {
+    $rule-max: $screen-xl-rule-max;
+  }
+  @else if $breakpoint-max == XXL {
+    $rule-max: $screen-xxl-rule-max;
+  }
+
+  $query: "screen and (" + $rule-min + ") and (" + $rule-max + ")";
+
+  @media #{$query} {
+    @if $html-class {
+      html.#{$html-class} & {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  @if $print == true {
+    @media print {
+      @content;
+    }
+  }
+}
+

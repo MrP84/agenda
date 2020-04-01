@@ -1,0 +1,27 @@
+// breakpoints
+$screen-s-breakpoint-max: 479px;
+$screen-m-breakpoint-max: 719px;
+$screen-l-breakpoint-max: 999px;
+$screen-xl-breakpoint-max: 1399px;
+$screen-xxl-breakpoint-max: 1799px;
+
+$screen-m-breakpoint-min: $screen-s-breakpoint-max + 1;
+$screen-l-breakpoint-min: $screen-m-breakpoint-max + 1;
+$screen-xl-breakpoint-min: $screen-l-breakpoint-max + 1;
+$screen-xxl-breakpoint-min: $screen-xl-breakpoint-max + 1;
+$screen-xxxl-breakpoint-min: $screen-xxl-breakpoint-max + 1;
+
+
+// rules
+$screen-s-rule-max: "max-width: " + $screen-s-breakpoint-max;
+$screen-m-rule-max: "max-width: " + $screen-m-breakpoint-max;
+$screen-l-rule-max: "max-width: " + $screen-l-breakpoint-max;
+$screen-xl-rule-max: "max-width: " + $screen-xl-breakpoint-max;
+$screen-xxl-rule-max: "max-width: " + $screen-xxl-breakpoint-max;
+
+$screen-m-rule-min: "min-width: " + $screen-m-breakpoint-min;
+$screen-l-rule-min: "min-width: " + $screen-l-breakpoint-min;
+$screen-xl-rule-min: "min-width: " + $screen-xl-breakpoint-min;
+$screen-xxl-rule-min: "min-width: " + $screen-xxl-breakpoint-min;
+$screen-xxxl-rule-min: "min-width: " + $screen-xxxl-breakpoint-min;
+
