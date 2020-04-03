@@ -24,13 +24,13 @@ class Calendar extends Component {
         return (
             <div className='calendar-header row flex-middle'>
                 <div className='col col-start'>
-                    <div className='icon' onClick={this.prevMonth}> chevron_left </div>
+                    <span className='icon icon-chevron-left' onClick={this.prevMonth}></span>
                 </div>
                 <div className="col col-center">
                     <span>{this.renderMonthFr(format(this.state.currentMonth, monthFormat))}</span> <span>{format(this.state.currentMonth, yearFormat)}</span>
                 </div>
                 <div className="col col-end" onClick={this.nextMonth}>
-                    <div className="icon"> chevron_right </div>
+                    <span className="icon icon-chevron-right"></span>
                 </div>
             </div>
 
@@ -80,7 +80,6 @@ class Calendar extends Component {
                         key={day}
                         onClick={() => this.onDateClick(cloneDay)}>
                         <span className="number">{formattedDate}</span>
-                        {/*<span className="bg">{formattedDate}</span>*/}
                     </div>
                 );
                 day = addDays(day, 1);
@@ -96,9 +95,21 @@ class Calendar extends Component {
     }
 
     onDateClick = day => {
+        const currentMonth = format(this.state.currentMonth, 'L');
+
+        const dayInMonth = format(day, 'L');
+        if (dayInMonth < currentMonth) {
+            this.prevMonth();
+
+        } else if (dayInMonth > currentMonth) {
+            this.nextMonth();
+        }
+
         this.setState({
             selectedDate: day
         });
+
+
     }
 
     nextMonth = () => {
