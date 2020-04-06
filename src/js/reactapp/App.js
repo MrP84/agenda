@@ -8,7 +8,6 @@ class App extends Component {
             <div className="App">
                 <header>
                     <div id="logo">
-                        <span className="icon">date_range</span>
                         <span>Agenda</span>
                     </div>
                 </header>
