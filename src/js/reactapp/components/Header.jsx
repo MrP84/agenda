@@ -2,20 +2,25 @@ import React from "react";
 import {format} from "date-fns";
 import RenderFr from "./RenderFr";
 
-const Header = ({ prevMonth, nextMonth, currentMonth }) => {
+const Header = ({ prevPeriod, nextPeriod, selectedDate, currentMonth, selectedOption }) => {
     const monthFormat = 'M';
     const yearFormat = 'yyyy';
+
+    const month = selectedOption === 'Semaine' ? selectedDate : currentMonth;
 
     return (
         <div className='calendar-header row flex-middle'>
             <div className='col col-start'>
-                <span className='icon icon-chevron-left' onClick={prevMonth}></span>
+                <span className='icon icon-chevron-left' onClick={prevPeriod}></span>
             </div>
             <div className="col col-center">
-                <RenderFr elemEn={format(currentMonth, monthFormat)} dateFormat={monthFormat}/>
-                <span> {format(currentMonth, yearFormat)}</span>
+
+                <RenderFr elemEn={format(month, monthFormat)} dateFormat={monthFormat}/>
+
+
+                <span> {format(month, yearFormat)}</span>
             </div>
-            <div className="col col-end" onClick={nextMonth}>
+            <div className="col col-end" onClick={nextPeriod}>
                 <span className="icon icon-chevron-right"></span>
             </div>
         </div>
