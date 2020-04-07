@@ -98,6 +98,10 @@
         border-left: 2px solid $color-blue-clean;
         color: $color-blue-clean;
       }
+
+      &.hour {
+        text-align: left;
+      }
     }
 
   }
