@@ -15,7 +15,7 @@ import {
     addMinutes
 } from "date-fns";
 
-const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOption }) => {
+const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOption, today }) => {
 
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(monthStart);
@@ -24,7 +24,7 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
     const startHour = addHours(startOfDay(currentMonth), 8);
     const endHour = subHours(endOfDay(currentMonth), 3);
 
-    if (selectedOption === "Semaine") {
+    if (selectedOption === "semaine") {
         const hourFormat = "H : mm";
         const rows = [];
 
@@ -80,7 +80,7 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
                 days.push(
                     <div
                         className={`col cell ${
-                            !isSameMonth(day, monthStart) ? "disabled" : isSameDay(day, selectedDate) ? "selected" : ""
+                            !isSameMonth(day, monthStart) ? "disabled" : (isSameDay(day, selectedDate) && selectedOption !== 'jour') || (isSameDay(day, today) && selectedOption === 'jour') ? "selected" : ""
                         }`}
                         key={day}
                         onClick={() => onDateClick(cloneDay)}>

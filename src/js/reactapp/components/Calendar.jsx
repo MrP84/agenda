@@ -10,7 +10,8 @@ class Calendar extends Component {
     state = {
         currentMonth: new Date(),
         selectedDate: new Date(),
-        selectedOption: null
+        selectedOption: null,
+        today: new Date()
     };
 
     onDateClick = day => {
@@ -24,13 +25,23 @@ class Calendar extends Component {
             this.nextPeriod();
         }
 
-        this.setState({
-            selectedDate: day
-        });
+        if (this.state.selectedOption === 'jour') {
+            this.setState({
+                selectedOption: null
+            })
+        }
+
+        if (this.state.selectedOption !== 'semaine') {
+            this.setState({
+                selectedDate: day
+            });
+        }
+
+
     };
 
     nextPeriod = () => {
-        if (this.state.selectedOption === 'Semaine') {
+        if (this.state.selectedOption === 'semaine') {
             this.setState({
                 selectedDate: addWeeks(this.state.selectedDate, 1)
             });
@@ -43,7 +54,7 @@ class Calendar extends Component {
     };
 
     prevPeriod = () => {
-        if (this.state.selectedOption === 'Semaine') {
+        if (this.state.selectedOption === 'semaine') {
             this.setState({
                 selectedDate: subWeeks(this.state.selectedDate, 1)
             });
@@ -56,21 +67,30 @@ class Calendar extends Component {
 
     handleViewChange = (selectedOption) => {
         this.setState({selectedOption});
+        this.toggleDisplay();
         console.log(selectedOption);
     };
 
+    toggleDisplay = () => {
+        document.querySelector('.view--items').classList.contains('hidden') ? document.querySelector('.view--items').classList.remove('hidden') : document.querySelector('.view--items').classList.add('hidden');
+    };
+
     render() {
-        const { currentMonth, selectedDate, selectedOption } = this.state;
+        const { currentMonth, selectedDate, selectedOption, today } = this.state;
         return (
             <div className='calendar'>
-                <View handleViewChange={this.handleViewChange}/>
+                <View
+                    handleViewChange={this.handleViewChange}
+                    selectedOption={selectedOption}
+                    toggleDisplay={this.toggleDisplay} />
 
                 <Header
                     prevPeriod={this.prevPeriod}
                     nextPeriod={this.nextPeriod}
                     currentMonth={currentMonth}
                     selectedDate={selectedDate}
-                    selectedOption={selectedOption}/>
+                    selectedOption={selectedOption}
+                    today={today} />
                 <Days
                     currentMonth={currentMonth}
                     selectedOption={selectedOption}
@@ -79,7 +99,8 @@ class Calendar extends Component {
                     onDateClick={this.onDateClick}
                     currentMonth={currentMonth}
                     selectedDate={selectedDate}
-                    selectedOption={selectedOption}/>
+                    selectedOption={selectedOption}
+                    today={today} />
             </div>
         )
     }

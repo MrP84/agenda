@@ -2,11 +2,11 @@ import React from "react";
 import {format} from "date-fns";
 import RenderFr from "./RenderFr";
 
-const Header = ({ prevPeriod, nextPeriod, selectedDate, currentMonth, selectedOption }) => {
+const Header = ({ prevPeriod, nextPeriod, selectedDate, currentMonth, selectedOption, today }) => {
     const monthFormat = 'M';
     const yearFormat = 'yyyy';
 
-    const month = selectedOption === 'Semaine' ? selectedDate : currentMonth;
+    const month = selectedOption === 'semaine' ? selectedDate : selectedOption === 'jour' ? today : currentMonth;
 
     return (
         <div className='calendar-header row flex-middle'>

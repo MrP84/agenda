@@ -1,28 +1,34 @@
-import React, {Component} from "react";
-import Select from "react-select"
+import React from "react";
 
-const View = ({handleViewChange}) => {
-
-
+const View = ({handleViewChange, selectedOption, toggleDisplay}) => {
 
     const options = [
-        {value: 'Mois', label: 'Mois'},
-        {value: 'Semaine', label: 'Semaine'},
-        {value: 'Jour', label: 'Jour'}
+        {value: 'Mois', label: 'mois'},
+        {value: 'Semaine', label: 'semaine'},
+        {value: 'Jour', label: 'jour'}
     ];
 
     let view = [];
+    const text = [];
+    const classList = selectedOption === null ? 'hidden' : '';
+    const content = selectedOption === null || selectedOption === 'jour' ? 'Sélectionnez ...' : selectedOption;
+
+    text.push(<p key={options[0].label} className='view--text' onClick={toggleDisplay}>{content}</p>);
 
     for (let i = 0; i < options.length; i++) {
         view.push(
             <li
-                className='view--item'
+                className={`view--item ${options[i].label} ${options[i].label === selectedOption ? "selected" : "hidden"}`}
                 key={i}
-                onClick={() => handleViewChange(options[i].value)}
-            >{options[i].label}</li>
+                onClick={() => handleViewChange(options[i].label)}
+            >{options[i].value}</li>
         )
     }
-    return <ul className="view--items">{view}</ul>;
+    return <div className='view'>
+            {text}
+            <ul className={`view--items ${classList}`}>{view}</ul>
+        </div>
+
 
 };
 

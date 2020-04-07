@@ -7,7 +7,7 @@ const Days = ({ selectedOption, selectedDate }) => {
     const days = [];
     let startDate = startOfWeek(selectedDate);
     for (let i = 0; i < 7; i++) {
-        if (selectedOption === 'Semaine') {
+        if (selectedOption === 'semaine') {
             days.push(
                 <div className="col col-center" key={i}>
                     <RenderFr elemEn={format(addDays(startDate, i), dateFormat)} dateFormat={dateFormat} />
