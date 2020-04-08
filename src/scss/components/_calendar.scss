@@ -18,6 +18,24 @@
     &.flex-middle {
       justify-content: center;
     }
+
+    &.hour {
+
+      .hour {
+        padding: 10px;
+      }
+
+      &:nth-child(even) {
+        .hour {
+          border-top: 1px dashed $color-grey-light;
+        }
+      }
+      &:nth-child(odd) {
+        .hour {
+          border-bottom: 1px dashed $color-grey-light;
+        }
+      }
+    }
   }
 
   .col {
@@ -84,7 +102,6 @@
       //background: var(--neutral-color);
       transition: 0.25s ease-out;
     }
-
 
     .col {
       flex-grow: 0;
