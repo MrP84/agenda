@@ -1,7 +1,8 @@
 $color-red-bg: #FF5650;
 $color-white: #FFFFFF;
 $color-border-light: #{$color-white}4D;
-$color-border-dark: #707070;
+$color-grey: #707070;
+$color-border-dark: $color-grey;
 $color-blue-clean: #2D5577;
 $color-blue-dark: #193145;
 $color-blue-medium: #108BA2;
@@ -13,3 +14,4 @@ $color-overlay: #132839;
 $color-grey-light: #e0e0e0;
 $rgba-shadow-heading: rgba(18, 18, 50, 0.12);
 $rgba-shadow-slider: rgba(165, 158, 137, 0.43);
+$rgba-color-black: rgba(0, 0, 0, 0.5);
