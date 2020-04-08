@@ -27,36 +27,29 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
     if (selectedOption === "semaine") {
         const hourFormat = "H : mm";
         const rows = [];
+        let key = '';
 
         let hours = [];
         let hour = startHour;
         let formattedHour = "";
 
         while (hour <= endHour) {
-            formattedHour = format(hour, hourFormat)
-            hours.push(
-                <div
-                    className='col hour'
-                    key={hour}
-                    onClick={() => onDateClick(hour)}>
-                    <span>{formattedHour}</span>
-                </div>
-
-            )
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 7; i++) {
+                formattedHour = i === 0 ? format(hour, hourFormat): '';
+                key = format(addDays(hour, i), 'y MMM dd H mm');
                 hours.push(
                     <div
                         className='col hour'
-                        key={i}
+                        key={key}
                         onClick={() => onDateClick(hour)}>
+                        <span>{formattedHour}</span>
                     </div>
-                )
 
+                )
             }
             hour = addMinutes(hour, 30);
-
             rows.push(
-                <div className="row" key={hour}>
+                <div className="row hour" key={hour}>
                     {hours}
                 </div>
             )

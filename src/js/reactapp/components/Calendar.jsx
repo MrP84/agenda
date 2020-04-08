@@ -10,7 +10,7 @@ class Calendar extends Component {
     state = {
         currentMonth: new Date(),
         selectedDate: new Date(),
-        selectedOption: null,
+        selectedOption: 'semaine',
         today: new Date()
     };
 
@@ -36,7 +36,7 @@ class Calendar extends Component {
                 selectedDate: day
             });
         }
-
+        console.log(day);
 
     };
 

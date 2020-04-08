@@ -8,12 +8,27 @@ const Days = ({ selectedOption, selectedDate }) => {
     let startDate = startOfWeek(selectedDate);
     for (let i = 0; i < 7; i++) {
         if (selectedOption === 'semaine') {
-            days.push(
-                <div className="col col-center" key={i}>
-                    <RenderFr elemEn={format(addDays(startDate, i), dateFormat)} dateFormat={dateFormat} />
-                    <span> {format(addDays(startDate, i), 'd')}</span>
-                </div>
-            );
+            if (i > 0 && i < 6) {
+                days.push(
+                    <div className="col col-center" key={i}>
+                        <RenderFr elemEn={format(addDays(startDate, i), dateFormat)} dateFormat={dateFormat} />
+                        <span> {format(addDays(startDate, i), 'd')}</span>
+                    </div>
+                );
+            } else if (i === 0) {
+                days.unshift(
+                    <div className="col col-center" key={i}>
+                        <span> Heure </span>
+                    </div>
+                )
+            } else if (i === 6) {
+                days.push(
+                    <div className="col col-center" key={i}>
+                        <span> </span>
+                    </div>
+                )
+            }
+
         } else {
             days.push(
                 <div className="col col-center" key={i}>

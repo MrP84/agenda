@@ -5,7 +5,7 @@ const View = ({handleViewChange, selectedOption, toggleDisplay}) => {
     const options = [
         {value: 'Mois', label: 'mois'},
         {value: 'Semaine', label: 'semaine'},
-        {value: 'Jour', label: 'jour'}
+        {value: 'Aujourd\'hui', label: 'jour'}
     ];
 
     let view = [];
