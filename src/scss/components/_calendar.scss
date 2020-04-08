@@ -19,15 +19,40 @@
       justify-content: center;
     }
 
+    &.month {
+      //cursor: pointer;
+      .col {
+        &:first-child, &:last-child {
+          pointer-events: none;
+          cursor: default;
+          background: repeating-linear-gradient(-45deg, $color-white,$color-white 2px, $color-grey-light 2px, $color-grey-light 4px);
+          min-height: 100%;
+        }
+      }
+
+    }
+
     &.hour {
 
       .hour {
         padding: 10px;
+        cursor: pointer;
+
+        &:first-of-type, &:last-of-type {
+          pointer-events: none;
+          cursor: default;
+        }
+
+        &:last-of-type {
+          background: repeating-linear-gradient(-45deg, $color-white,$color-white 2px, $color-grey-light 2px, $color-grey-light 4px);
+          min-height: 100%;
+        }
       }
 
       &:nth-child(even) {
         .hour {
           border-top: 1px dashed $color-grey-light;
+          color: $color-grey;
         }
       }
       &:nth-child(odd) {
@@ -59,7 +84,7 @@
     }
 
     &.disabled {
-      opacity: 0.5;
+      color: $rgba-color-black;
     }
   }
 

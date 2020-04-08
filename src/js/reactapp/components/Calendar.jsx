@@ -10,7 +10,7 @@ class Calendar extends Component {
     state = {
         currentMonth: new Date(),
         selectedDate: new Date(),
-        selectedOption: 'semaine',
+        selectedOption: null,
         today: new Date()
     };
 
@@ -37,6 +37,7 @@ class Calendar extends Component {
             });
         }
         console.log(day);
+        console.log(this.state.selectedDate);
 
     };
 
@@ -66,7 +67,12 @@ class Calendar extends Component {
     };
 
     handleViewChange = (selectedOption) => {
-        this.setState({selectedOption});
+        this.setState({selectedOption: selectedOption});
+        if (selectedOption === 'jour') {
+            this.setState({
+                selectedDate: this.state.today
+            })
+        }
         this.toggleDisplay();
         console.log(selectedOption);
     };

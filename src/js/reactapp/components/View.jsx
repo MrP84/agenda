@@ -10,7 +10,6 @@ const View = ({handleViewChange, selectedOption, toggleDisplay}) => {
 
     let view = [];
     const text = [];
-    const classList = selectedOption === null ? 'hidden' : '';
     const content = selectedOption === null || selectedOption === 'jour' ? 'Sélectionnez ...' : selectedOption;
 
     text.push(<p key={options[0].label} className='view--text' onClick={toggleDisplay}>{content}</p>);
@@ -21,12 +20,12 @@ const View = ({handleViewChange, selectedOption, toggleDisplay}) => {
                 className={`view--item ${options[i].label} ${options[i].label === selectedOption ? "selected" : "hidden"}`}
                 key={i}
                 onClick={() => handleViewChange(options[i].label)}
-            >{options[i].value}</li>
+            ><span className={`icon icon-${options[i].label}`}> </span> {options[i].value} </li>
         )
     }
     return <div className='view'>
             {text}
-            <ul className={`view--items ${classList}`}>{view}</ul>
+            <ul className={`view--items hidden`}>{view}</ul>
         </div>
 
 

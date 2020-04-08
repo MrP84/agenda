@@ -17,7 +17,7 @@ import {
 
 const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOption, today }) => {
 
-    const monthStart = startOfMonth(currentMonth);
+    const monthStart = selectedOption === "mois" || selectedOption === null ? startOfMonth(currentMonth) : startOfMonth(selectedDate);
     const monthEnd = endOfMonth(monthStart);
     const startDate = startOfWeek(monthStart);
     const endDate = endOfWeek(monthEnd);
@@ -49,7 +49,7 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
             }
             hour = addMinutes(hour, 30);
             rows.push(
-                <div className="row hour" key={hour}>
+                <div className="row hour" key={key}>
                     {hours}
                 </div>
             )
@@ -84,7 +84,7 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
                 day = addDays(day, 1);
             }
             rows.push(
-                <div className="row" key={day}>
+                <div className="row month" key={day}>
                     {days}
                 </div>
             );
