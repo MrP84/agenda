@@ -21,13 +21,14 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
     const monthEnd = endOfMonth(monthStart);
     const startDate = startOfWeek(monthStart);
     const endDate = endOfWeek(monthEnd);
-    const startHour = addHours(startOfDay(currentMonth), 8);
-    const endHour = subHours(endOfDay(currentMonth), 3);
+    const startHour = addHours(startOfDay(startOfWeek(selectedDate)), 8);
+    const endHour = subHours(endOfDay(selectedDate), 3);
 
     if (selectedOption === "semaine") {
         const hourFormat = "H : mm";
         const rows = [];
         let key = '';
+        console.log(endHour);
 
         let hours = [];
         let hour = startHour;
@@ -35,8 +36,8 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
 
         while (hour <= endHour) {
             for (let i = 0; i < 7; i++) {
-                formattedHour = i === 0 ? format(hour, hourFormat): '';
                 key = format(addDays(hour, i), 'y MMM dd H mm');
+                formattedHour = i === 0 ? format(hour, hourFormat): key;
                 hours.push(
                     <div
                         className='col hour'

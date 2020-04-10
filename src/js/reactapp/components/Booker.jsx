@@ -1,13 +1,25 @@
-import React from "react";
+import React, {Component} from "react";
 
-const Header = ({ prevMonth, nextMonth, currentMonth }) => {
-    return (
-        <div className='booker'>
-            <form action="#">
+import BookerForm from "./BookerForm";
+import students from '../example'
 
-            </form>
-        </div>
-    )
-};
+class Booker extends Component {
+    state = {
+        isDisplayed: false
+    }
 
-export default Header;
+    render() {
+        const {selectedDate, selectedOption} = this.props;
+        return (
+            <div>
+                <BookerForm
+                    selectedDate={selectedDate}
+                    isDisplayed={this.state.isDisplayed}
+                    selectedOption={selectedOption} />
+            </div>
+        )
+    }
+
+}
+
+export default Booker;

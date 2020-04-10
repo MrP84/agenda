@@ -5,6 +5,7 @@ import Days from "./Days";
 import Cells from "./Cells";
 import Header from "./Header";
 import View from "./View";
+import Booker from "./Booker";
 
 class Calendar extends Component {
     state = {
@@ -31,14 +32,12 @@ class Calendar extends Component {
             })
         }
 
-        if (this.state.selectedOption !== 'semaine') {
-            this.setState({
-                selectedDate: day
-            });
-        }
-        console.log(day);
-        console.log(this.state.selectedDate);
+        this.setState({
+            selectedDate: day
+        });
 
+        console.log(this.state);
+        console.log(day);
     };
 
     nextPeriod = () => {
@@ -74,7 +73,6 @@ class Calendar extends Component {
             })
         }
         this.toggleDisplay();
-        console.log(selectedOption);
     };
 
     toggleDisplay = () => {
@@ -107,6 +105,9 @@ class Calendar extends Component {
                     selectedDate={selectedDate}
                     selectedOption={selectedOption}
                     today={today} />
+                <Booker
+                    selectedDate={selectedDate}
+                    selectedOption={selectedOption} />
             </div>
         )
     }
