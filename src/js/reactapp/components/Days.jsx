@@ -1,5 +1,5 @@
 import React from "react";
-import {addDays, format, startOfWeek} from "date-fns";
+import {addDays, format, startOfWeek, isSameDay} from "date-fns";
 import RenderFr from "./RenderFr";
 
 const Days = ({ selectedOption, selectedDate }) => {
@@ -10,7 +10,7 @@ const Days = ({ selectedOption, selectedDate }) => {
         if (selectedOption === 'semaine') {
             if (i > 0 && i < 6) {
                 days.push(
-                    <div className="col col-center" key={i}>
+                    <div className={`col col-center ${isSameDay(addDays(startDate, i), selectedDate)? 'selected' : ''}`} key={i}>
                         <RenderFr elemEn={format(addDays(startDate, i), dateFormat)} dateFormat={dateFormat} />
                         <span> {format(addDays(startDate, i), 'd')}</span>
                     </div>

@@ -36,8 +36,8 @@ class Calendar extends Component {
             selectedDate: day
         });
 
-        console.log(this.state);
         console.log(day);
+
     };
 
     nextPeriod = () => {
