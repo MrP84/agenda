@@ -115,6 +115,11 @@
     font-size: 70%;
     padding: .75em 0;
     border-bottom: 1px solid $color-grey-light;
+
+    .selected {
+      color: $color-blue-clean;
+      font-weight: bold;
+    }
   }
 
   .body {
