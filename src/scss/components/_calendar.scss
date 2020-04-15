@@ -86,6 +86,19 @@
     &.disabled {
       color: $rgba-color-black;
     }
+
+    .day {
+      @include flex-row(space-between, null);
+
+      .holiday {
+        width: 100%;
+        height: auto;
+        background-color: $color-blue-dark;
+        color: $color-white;
+        border-radius: 5px;
+        padding: 5px;
+      }
+    }
   }
 
   &-header {
