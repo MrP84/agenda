@@ -12,8 +12,19 @@ class Calendar extends Component {
         currentMonth: new Date(),
         selectedDate: new Date(),
         selectedOption: null,
-        today: new Date()
+        today: new Date(),
+        holidays: []
     };
+
+    componentDidMount() {
+        const year = format(this.state.currentMonth, 'Y');
+        fetch('https://calendarific.com/api/v2/holidays?api_key=bbe984721b4f0a35417438222b7fde5b42ce47b2&country=FR&year=' + year)
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({holidays: data.response.holidays})
+            })
+            .catch((e) => console.log(e))
+    }
 
     onDateClick = day => {
         const currentMonth = format(this.state.currentMonth, 'L');
@@ -36,7 +47,7 @@ class Calendar extends Component {
             selectedDate: day
         });
 
-        console.log(day);
+        console.log(this.state.holidays);
 
     };
 
@@ -80,7 +91,7 @@ class Calendar extends Component {
     };
 
     render() {
-        const { currentMonth, selectedDate, selectedOption, today } = this.state;
+        const { currentMonth, selectedDate, selectedOption, today, holidays } = this.state;
         return (
             <div className='calendar'>
                 <View
@@ -104,7 +115,8 @@ class Calendar extends Component {
                     currentMonth={currentMonth}
                     selectedDate={selectedDate}
                     selectedOption={selectedOption}
-                    today={today} />
+                    today={today}
+                    holidays={holidays}/>
                 <Booker
                     selectedDate={selectedDate}
                     selectedOption={selectedOption} />

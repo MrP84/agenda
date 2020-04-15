@@ -15,7 +15,9 @@ import {
     addMinutes
 } from "date-fns";
 
-const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOption, today }) => {
+import Holidays from "./Holidays";
+
+const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOption, today, holidays }) => {
 
     const monthStart = selectedOption === "mois" || selectedOption === null ? startOfMonth(currentMonth) : startOfMonth(selectedDate);
     const monthEnd = endOfMonth(monthStart);
@@ -23,6 +25,17 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
     const endDate = endOfWeek(monthEnd);
     const startHour = addHours(startOfDay(startOfWeek(selectedDate)), 8);
     const endHour = subHours(endOfDay(startOfWeek(selectedDate)), 3);
+
+    const nationalHolidays = Object.keys(holidays).filter(key => holidays[key].type.includes('National holiday'));
+
+    const filtered = Object.keys(holidays)
+        .filter(key => nationalHolidays.includes(key))
+        .reduce( (obj, key) => {
+            obj[key] = holidays[key];
+            return obj;
+        }, {});
+
+    const dates = Object.keys(filtered).map(index => new Date(filtered[index].date.datetime.year, filtered[index].date.datetime.month - 1, filtered[index].date.datetime.day).getTime());
 
     if (selectedOption === "semaine") {
         const hourFormat = "H : mm";
@@ -68,6 +81,7 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
         let formattedDate = "";
 
         while (day <= endDate) {
+
             for (let i = 0; i < 7; i++) {
                 formattedDate = format(day, dateFormat);
                 const cloneDay = day;
@@ -78,7 +92,11 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
                         }`}
                         key={day}
                         onClick={() => onDateClick(cloneDay)}>
-                        <span className="number">{formattedDate}</span>
+                        <div className="day">
+                            <span className="number">{formattedDate}</span>
+                            {dates.includes(day.getTime()) && <Holidays support={dates.indexOf(day.getTime())}/>}
+                        </div>
+
 
                     </div>
                 );
