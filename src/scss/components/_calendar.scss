@@ -133,6 +133,18 @@
       color: $color-blue-clean;
       font-weight: bold;
     }
+
+    .col {
+      @include flex-column(center, null);
+    }
+
+    &--weekdays {
+      @include flex-row(center, center);
+
+      span:first-child {
+        margin-right: 5px;
+      }
+    }
   }
 
   .body {
