@@ -1,8 +1,9 @@
 import React from "react";
 import {addDays, format, startOfWeek, isSameDay} from "date-fns";
 import RenderFr from "./RenderFr";
+import Holidays from "./Holidays";
 
-const Days = ({ selectedOption, selectedDate }) => {
+const Days = ({ selectedOption, selectedDate, holidays }) => {
     const dateFormat = "i";
     const days = [];
     let startDate = startOfWeek(selectedDate);
@@ -11,8 +12,14 @@ const Days = ({ selectedOption, selectedDate }) => {
             if (i > 0 && i < 6) {
                 days.push(
                     <div className={`col col-center ${isSameDay(addDays(startDate, i), selectedDate)? 'selected' : ''}`} key={i}>
-                        <RenderFr elemEn={format(addDays(startDate, i), dateFormat)} dateFormat={dateFormat} />
-                        <span> {format(addDays(startDate, i), 'd')}</span>
+                        <div className="calendar-days--weekdays">
+                            <RenderFr elemEn={format(addDays(startDate, i), dateFormat)} dateFormat={dateFormat} />
+                            <span> {format(addDays(startDate, i), 'd')}</span>
+                        </div>
+
+
+                            {holidays.includes(addDays(startDate, i).getTime()) && (<div className="day"><Holidays support={ holidays.indexOf(addDays(startDate, i).getTime()) }/></div>)}
+
                     </div>
                 );
             } else if (i === 0) {

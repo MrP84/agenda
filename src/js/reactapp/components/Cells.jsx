@@ -26,17 +26,6 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
     const startHour = addHours(startOfDay(startOfWeek(selectedDate)), 8);
     const endHour = subHours(endOfDay(startOfWeek(selectedDate)), 3);
 
-    const nationalHolidays = Object.keys(holidays).filter(key => holidays[key].type.includes('National holiday'));
-
-    const filtered = Object.keys(holidays)
-        .filter(key => nationalHolidays.includes(key))
-        .reduce( (obj, key) => {
-            obj[key] = holidays[key];
-            return obj;
-        }, {});
-
-    const dates = Object.keys(filtered).map(index => new Date(filtered[index].date.datetime.year, filtered[index].date.datetime.month - 1, filtered[index].date.datetime.day).getTime());
-
     if (selectedOption === "semaine") {
         const hourFormat = "H : mm";
         const rows = [];
@@ -94,7 +83,7 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
                         onClick={() => onDateClick(cloneDay)}>
                         <div className="day">
                             <span className="number">{formattedDate}</span>
-                            {dates.includes(day.getTime()) && <Holidays support={dates.indexOf(day.getTime())}/>}
+                            {holidays.includes(day.getTime()) && <Holidays support={holidays.indexOf(day.getTime())}/>}
                         </div>
 
 

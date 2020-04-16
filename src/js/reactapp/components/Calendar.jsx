@@ -21,10 +21,42 @@ class Calendar extends Component {
         fetch('https://calendarific.com/api/v2/holidays?api_key=bbe984721b4f0a35417438222b7fde5b42ce47b2&country=FR&year=' + year)
             .then(res => res.json())
             .then((data) => {
-                this.setState({holidays: data.response.holidays})
+                const response = data.response.holidays;
+                const nationalHolidays = Object.keys(response).filter(key => response[key].type.includes('National holiday'));
+
+                const filtered = Object.keys(response)
+                    .filter(key => nationalHolidays.includes(key))
+                    .reduce( (obj, key) => {
+                        obj[key] = response[key];
+                        return obj;
+                    }, {});
+
+                const dates = Object.keys(filtered).map(index => new Date(filtered[index].date.datetime.year, filtered[index].date.datetime.month - 1, filtered[index].date.datetime.day).getTime());
+
+                this.setState({holidays: dates})
             })
             .catch((e) => console.log(e))
+
     }
+
+    updateHolidayState = () => {
+        const nationalHolidays = Object.keys(this.state.holidays).filter(key => this.state.holidays[key].type.includes('National holiday'));
+
+        const filtered = Object.keys(this.state.holidays)
+            .filter(key => nationalHolidays.includes(key))
+            .reduce( (obj, key) => {
+                obj[key] = this.state.holidays[key];
+                return obj;
+            }, {});
+
+        const dates = Object.keys(filtered).map(index => new Date(filtered[index].date.datetime.year, filtered[index].date.datetime.month - 1, filtered[index].date.datetime.day).getTime());
+
+        this.setState({
+            holidays: dates
+        })
+    }
+
+
 
     onDateClick = day => {
         const currentMonth = format(this.state.currentMonth, 'L');
@@ -109,7 +141,8 @@ class Calendar extends Component {
                 <Days
                     currentMonth={currentMonth}
                     selectedOption={selectedOption}
-                    selectedDate={selectedDate} />
+                    selectedDate={selectedDate}
+                    holidays={holidays}/>
                 <Cells
                     onDateClick={this.onDateClick}
                     currentMonth={currentMonth}
