@@ -16,8 +16,9 @@ import {
 } from "date-fns";
 
 import Holidays from "./Holidays";
+import Event from "./Event";
 
-const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOption, today, holidays }) => {
+const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOption, today, holidays, events }) => {
 
     const monthStart = selectedOption === "mois" || selectedOption === null ? startOfMonth(currentMonth) : startOfMonth(selectedDate);
     const monthEnd = endOfMonth(monthStart);
@@ -25,6 +26,11 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
     const endDate = endOfWeek(monthEnd);
     const startHour = addHours(startOfDay(startOfWeek(selectedDate)), 8);
     const endHour = subHours(endOfDay(startOfWeek(selectedDate)), 3);
+
+
+    const getName = (day) => {
+
+    }
 
     if (selectedOption === "semaine") {
         const hourFormat = "H : mm";
@@ -74,6 +80,7 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
             for (let i = 0; i < 7; i++) {
                 formattedDate = format(day, dateFormat);
                 const cloneDay = day;
+                getName(format(day, 'i'));
                 days.push(
                     <div
                         className={`col cell ${
@@ -85,6 +92,7 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
                             <span className="number">{formattedDate}</span>
                             {holidays.includes(day.getTime()) && <Holidays support={holidays.indexOf(day.getTime())}/>}
                         </div>
+
 
 
                     </div>

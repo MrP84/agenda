@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const RenderFr = ({ elemEn, dateFormat, support }) => {
     const monthsFr = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'juillet', 'Août', 'Septembre', 'Octobre','Novembre', 'Décembre'];
 

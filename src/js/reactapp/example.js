@@ -1,18 +1,33 @@
 const students = {
-    1: {
+    0: {
         name: 'Malo',
-        day: 'lundi',
-        startHour: '17:30',
-        endHour: '19:30',
+        book: {
+            0: {
+                day: '5',
+                startHour: '17:30',
+                endHour: '19:30'
+            },
+        },
         repeat: 'allweeks',
         precision: ''
     },
-    2: {
+    1: {
         name: 'Romain',
-        day: 'vendredi',
-        startHour: '09:00',
-        endHour: '10:00',
+        book: {
+            0: {
+                day: '5',
+                startHour: '09:00',
+                endHour: '10:00'
+            },
+            1: {
+                day: '2',
+                startHour: '18:00',
+                endHour: '19:00'
+            },
+        },
         repeat: 'allweeks',
         precision: ''
     }
 }
+
+export default students

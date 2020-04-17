@@ -7,14 +7,20 @@ import Header from "./Header";
 import View from "./View";
 import Booker from "./Booker";
 
+import students from "../example";
+
+
 class Calendar extends Component {
     state = {
         currentMonth: new Date(),
         selectedDate: new Date(),
         selectedOption: null,
         today: new Date(),
-        holidays: []
+        holidays: [],
+        events: {}
     };
+
+    loadExample = () => this.setState({ events: students})
 
     componentDidMount() {
         const year = format(this.state.currentMonth, 'Y');
@@ -33,30 +39,15 @@ class Calendar extends Component {
 
                 const dates = Object.keys(filtered).map(index => new Date(filtered[index].date.datetime.year, filtered[index].date.datetime.month - 1, filtered[index].date.datetime.day).getTime());
 
+                console.log(response);
+                console.log(nationalHolidays);
+                console.log(filtered);
+
                 this.setState({holidays: dates})
             })
             .catch((e) => console.log(e))
 
     }
-
-    updateHolidayState = () => {
-        const nationalHolidays = Object.keys(this.state.holidays).filter(key => this.state.holidays[key].type.includes('National holiday'));
-
-        const filtered = Object.keys(this.state.holidays)
-            .filter(key => nationalHolidays.includes(key))
-            .reduce( (obj, key) => {
-                obj[key] = this.state.holidays[key];
-                return obj;
-            }, {});
-
-        const dates = Object.keys(filtered).map(index => new Date(filtered[index].date.datetime.year, filtered[index].date.datetime.month - 1, filtered[index].date.datetime.day).getTime());
-
-        this.setState({
-            holidays: dates
-        })
-    }
-
-
 
     onDateClick = day => {
         const currentMonth = format(this.state.currentMonth, 'L');
@@ -78,8 +69,6 @@ class Calendar extends Component {
         this.setState({
             selectedDate: day
         });
-
-        console.log(this.state.holidays);
 
     };
 
@@ -123,7 +112,7 @@ class Calendar extends Component {
     };
 
     render() {
-        const { currentMonth, selectedDate, selectedOption, today, holidays } = this.state;
+        const { currentMonth, selectedDate, selectedOption, today, holidays, events } = this.state;
         return (
             <div className='calendar'>
                 <View
@@ -149,10 +138,12 @@ class Calendar extends Component {
                     selectedDate={selectedDate}
                     selectedOption={selectedOption}
                     today={today}
-                    holidays={holidays}/>
+                    holidays={holidays}
+                    events={events} />
                 <Booker
                     selectedDate={selectedDate}
                     selectedOption={selectedOption} />
+                <button onClick={this.loadExample}>Charger exemple</button>
             </div>
         )
     }
