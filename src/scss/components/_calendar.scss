@@ -35,7 +35,7 @@
     &.hour {
 
       .hour {
-        padding: 10px;
+        height: 40px;
         cursor: pointer;
 
         &:first-of-type, &:last-of-type {
@@ -46,6 +46,10 @@
         &:last-of-type {
           background: repeating-linear-gradient(-45deg, $color-white,$color-white 2px, $color-grey-light 2px, $color-grey-light 4px);
           min-height: 100%;
+        }
+
+        span {
+          margin: 10px 0 10px 5px;
         }
       }
 
@@ -177,6 +181,8 @@
 
       &.hour {
         text-align: left;
+        position: relative;
+        padding: 0;
       }
     }
 

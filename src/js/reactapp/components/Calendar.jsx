@@ -102,7 +102,7 @@ class Calendar extends Component {
 
         if (this.state.selectedOption === 'jour') {
             this.setState({
-                selectedOption: null
+                selectedOption: 'mois'
             })
         }
 
@@ -141,7 +141,8 @@ class Calendar extends Component {
         this.setState({selectedOption: selectedOption});
         if (selectedOption === 'jour') {
             this.setState({
-                selectedDate: this.state.today
+                selectedDate: this.state.today,
+                selectedOption: 'mois'
             })
         }
         this.toggleDisplay();

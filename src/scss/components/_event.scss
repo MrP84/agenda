@@ -1,4 +1,6 @@
 .event {
+  $border-width: 1px;
+
   position: relative;
   background-color: $color-blue-clean;
   color: $color-white;
@@ -10,5 +12,20 @@
   &-title {
     text-transform: capitalize;
     margin-right: 5px;
+  }
+
+  &.height {
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    z-index: 2;
+
+    &.x1 {
+      height: calc(200% + 4 * #{$border-width});
+    }
+
+    &.x2 {
+      height: calc(400% + 8 * #{$border-width});
+    }
   }
 }

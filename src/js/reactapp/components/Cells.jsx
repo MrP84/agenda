@@ -26,23 +26,10 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
     const endDate = endOfWeek(monthEnd);
     const startHour = addHours(startOfDay(startOfWeek(selectedDate)), 8);
     const endHour = subHours(endOfDay(startOfWeek(selectedDate)), 3);
-
-
-    /*const getName = (day) => {
-        const booker = Object.keys(events).map(index => events[index]);
-        console.log(booker[day - 1]);
-        if (booker[day - 1]) {
-            const names = Object.keys(booker[day - 1]).map(index => booker[day - 1][index].name);
-
-            console.log(names);
-        }
-
-    }*/
-
-
+    const booker = Object.keys(events).map(index => events[index]);
 
     if (selectedOption === "semaine") {
-        const hourFormat = "H : mm";
+        const hourFormat = "HH : mm";
         const rows = [];
         let key = '';
 
@@ -52,7 +39,15 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
 
         while (hour <= endHour) {
             for (let i = 0; i < 7; i++) {
-                const momentum = addDays(hour, i)
+                const momentum = addDays(hour, i);
+
+                const events =
+                    (booker[format(momentum, 'i') - 1] && booker[format(momentum, 'i') - 1][0]) ?
+                        Object.keys(booker[format(momentum, 'i') - 1])
+                    .filter(key => booker[format(momentum, 'i') - 1][key].startHour === format(hour, 'HH:mm'))
+                    .map(index => <Event key={index} details={booker[format(momentum, 'i') - 1][index]} selectedOption={selectedOption}/>)
+                        : '';
+
                 key = format(momentum, 'y MMM dd H mm');
                 formattedHour = i === 0 ? format(hour, hourFormat): '';
                 hours.push(
@@ -61,8 +56,8 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
                         key={key}
                         onClick={() => onDateClick(momentum)}>
                         <span>{formattedHour}</span>
+                        {events}
                     </div>
-
                 )
             }
             hour = addMinutes(hour, 30);
@@ -89,9 +84,7 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
             for (let i = 0; i < 7; i++) {
                 formattedDate = format(day, dateFormat);
                 const cloneDay = day;
-                const booker = Object.keys(events).map(index => events[index]);
-                const details = (booker[format(day, 'i') - 1]) ? Object.keys(booker[format(day, 'i') - 1]).map(index => <Event key={index} details={booker[format(day, 'i') - 1][index]} selectedOption={selectedOption}/>) : '';
-               // console.log(booker[format(day, 'i') - 1] ? Object.entries(booker[format(day, 'i') - 1]).length : 'rien');
+                const events = (booker[format(day, 'i') - 1]) ? Object.keys(booker[format(day, 'i') - 1]).map(index => <Event key={index} details={booker[format(day, 'i') - 1][index]} selectedOption={selectedOption} momentum={day}/>) : '';
 
                 days.push(
                     <div
@@ -104,8 +97,7 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
                             <span className="number">{formattedDate}</span>
                             {holidays.includes(day.getTime()) && <Holidays support={holidays.indexOf(day.getTime())}/>}
                         </div>
-                        {/*{(booker[format(day, 'i') - 1]) && <div><Event selectedOption={selectedOption} details={booker[format(day, 'i') - 1]}/></div>}*/}
-                        {details}
+                        {events}
 
 
 
