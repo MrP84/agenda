@@ -1,0 +1,14 @@
+.event {
+  position: relative;
+  background-color: $color-blue-clean;
+  color: $color-white;
+  @include flex-row();
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+
+  &-title {
+    text-transform: capitalize;
+    margin-right: 5px;
+  }
+}

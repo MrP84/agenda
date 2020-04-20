@@ -163,6 +163,7 @@
       width: calc(100% / 7);
       border: 1px solid $color-grey-light;
       text-align: right;
+      @include flex-column();
 
       &.selected {
         border-right : 4px solid $color-blue-clean;
