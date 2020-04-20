@@ -17,7 +17,51 @@ class Calendar extends Component {
         selectedOption: null,
         today: new Date(),
         holidays: [],
-        events: {}
+        events: {
+            1: {
+
+            },
+            2: {
+                0 : {
+                    name : 'romain',
+                    startHour: '18:00',
+                    endHour: '19:00',
+                    repeat: 'allweeks',
+                    precision: ''
+                },
+
+            },
+            3: {
+                0 : {
+                    name: 'romane',
+                    startHour: '17:00',
+                    endHour: '18:00',
+                    repeat: 'allweeks',
+                    precision: ''
+                },
+            },
+            4: {
+
+            },
+            5: {
+                0 : {
+                    name: 'romain',
+                    startHour: '09:00',
+                    endHour: '10:00',
+                    repeat: 'allweeks',
+                    precision: ''
+                },
+                1 : {
+                    name: 'malo',
+                    startHour: '17:30',
+                    endHour: '19:30',
+                    repeat: 'allweeks',
+                    precision: ''
+                },
+
+            }
+
+        }
     };
 
     loadExample = () => this.setState({ events: students})
@@ -38,10 +82,6 @@ class Calendar extends Component {
                     }, {});
 
                 const dates = Object.keys(filtered).map(index => new Date(filtered[index].date.datetime.year, filtered[index].date.datetime.month - 1, filtered[index].date.datetime.day).getTime());
-
-                console.log(response);
-                console.log(nationalHolidays);
-                console.log(filtered);
 
                 this.setState({holidays: dates})
             })

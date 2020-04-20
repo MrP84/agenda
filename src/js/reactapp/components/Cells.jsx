@@ -28,9 +28,18 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
     const endHour = subHours(endOfDay(startOfWeek(selectedDate)), 3);
 
 
-    const getName = (day) => {
+    /*const getName = (day) => {
+        const booker = Object.keys(events).map(index => events[index]);
+        console.log(booker[day - 1]);
+        if (booker[day - 1]) {
+            const names = Object.keys(booker[day - 1]).map(index => booker[day - 1][index].name);
 
-    }
+            console.log(names);
+        }
+
+    }*/
+
+
 
     if (selectedOption === "semaine") {
         const hourFormat = "H : mm";
@@ -80,7 +89,10 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
             for (let i = 0; i < 7; i++) {
                 formattedDate = format(day, dateFormat);
                 const cloneDay = day;
-                getName(format(day, 'i'));
+                const booker = Object.keys(events).map(index => events[index]);
+                const details = (booker[format(day, 'i') - 1]) ? Object.keys(booker[format(day, 'i') - 1]).map(index => <Event key={index} details={booker[format(day, 'i') - 1][index]} selectedOption={selectedOption}/>) : '';
+
+
                 days.push(
                     <div
                         className={`col cell ${
@@ -92,6 +104,8 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
                             <span className="number">{formattedDate}</span>
                             {holidays.includes(day.getTime()) && <Holidays support={holidays.indexOf(day.getTime())}/>}
                         </div>
+                        {/*{(booker[format(day, 'i') - 1]) && <div><Event selectedOption={selectedOption} details={booker[format(day, 'i') - 1]}/></div>}*/}
+                        {details}
 
 
 

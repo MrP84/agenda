@@ -4,9 +4,9 @@ const BookerSelect = () => {
     return (
         <ul className="booker-form--repeats">
             <li className="booker-form--repeat">Une fois</li>
+            <li className="booker-form--repeat">Chaque semaine</li>
             <li className="booker-form--repeat">Une semaine sur deux</li>
-            <li className="booker-form--repeat">Tous les mois</li>
-            <li className="booker-form--repeat">Toute l'année</li>
+            <li className="booker-form--repeat">Une fois par mois</li>
         </ul>
     )
 }
