@@ -91,13 +91,13 @@ const Cells = ({ id: key, onDateClick, currentMonth, selectedDate, selectedOptio
                 const cloneDay = day;
                 const booker = Object.keys(events).map(index => events[index]);
                 const details = (booker[format(day, 'i') - 1]) ? Object.keys(booker[format(day, 'i') - 1]).map(index => <Event key={index} details={booker[format(day, 'i') - 1][index]} selectedOption={selectedOption}/>) : '';
-
+               // console.log(booker[format(day, 'i') - 1] ? Object.entries(booker[format(day, 'i') - 1]).length : 'rien');
 
                 days.push(
                     <div
                         className={`col cell ${
                             !isSameMonth(day, monthStart) ? "disabled" : (isSameDay(day, selectedDate) && selectedOption !== 'jour') || (isSameDay(day, today) && selectedOption === 'jour') ? "selected" : ""
-                        }`}
+                        } ${(booker[format(day, 'i') - 1] && Object.entries(booker[format(day, 'i') - 1]).length > 1) ? 'scrolled' : ''}`}
                         key={day}
                         onClick={() => onDateClick(cloneDay)}>
                         <div className="day">

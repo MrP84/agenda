@@ -171,6 +171,10 @@
         color: $color-blue-clean;
       }
 
+      &.scrolled {
+        overflow-y: scroll;
+      }
+
       &.hour {
         text-align: left;
       }
