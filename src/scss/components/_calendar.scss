@@ -179,6 +179,11 @@
         overflow-y: scroll;
       }
 
+      &.js-prevent {
+        pointer-events: none;
+        cursor: default;
+      }
+
       &.hour {
         text-align: left;
         position: relative;
