@@ -182,6 +182,7 @@
       &.js-prevent {
         pointer-events: none;
         cursor: default;
+        background: repeating-linear-gradient(-45deg, $color-white,$color-white 2px, $color-grey-light 2px, $color-grey-light 4px);
       }
 
       &.hour {
