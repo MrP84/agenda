@@ -17,6 +17,7 @@ class Calendar extends Component {
         selectedOption: null,
         today: new Date(),
         holidays: [],
+        isDisplayed: false,
         events: {
             1: {
 
@@ -27,7 +28,8 @@ class Calendar extends Component {
                     startHour: '18:00',
                     endHour: '19:00',
                     repeat: 'allweeks',
-                    precision: ''
+                    precision: '',
+                    bgColor: '#55248D'
                 },
 
             },
@@ -37,7 +39,9 @@ class Calendar extends Component {
                     startHour: '17:00',
                     endHour: '18:00',
                     repeat: 'allweeks',
-                    precision: ''
+                    precision: '',
+                    bgColor: '#557C8D'
+
                 },
             },
             4: {
@@ -49,14 +53,16 @@ class Calendar extends Component {
                     startHour: '09:00',
                     endHour: '10:00',
                     repeat: 'allweeks',
-                    precision: ''
+                    precision: '',
+                    bgColor: '#55248D'
                 },
                 1 : {
                     name: 'malo',
                     startHour: '17:30',
                     endHour: '19:30',
                     repeat: 'allweeks',
-                    precision: ''
+                    precision: '',
+                    bgColor: 'default'
                 },
 
             }
@@ -107,7 +113,8 @@ class Calendar extends Component {
         }
 
         this.setState({
-            selectedDate: day
+            selectedDate: day,
+            isDisplayed: true
         });
 
     };
@@ -152,8 +159,14 @@ class Calendar extends Component {
         document.querySelector('.view--items').classList.contains('hidden') ? document.querySelector('.view--items').classList.remove('hidden') : document.querySelector('.view--items').classList.add('hidden');
     };
 
+    handleClose = () => {
+        this.setState({
+            isDisplayed: false
+        })
+    }
+
     render() {
-        const { currentMonth, selectedDate, selectedOption, today, holidays, events } = this.state;
+        const { currentMonth, selectedDate, selectedOption, today, holidays, events, isDisplayed } = this.state;
         return (
             <div className='calendar'>
                 <View
@@ -183,7 +196,10 @@ class Calendar extends Component {
                     events={events} />
                 <Booker
                     selectedDate={selectedDate}
-                    selectedOption={selectedOption} />
+                    selectedOption={selectedOption}
+                    events={events}
+                    isDisplayed={isDisplayed}
+                    handleClose={this.handleClose}/>
                 <button onClick={this.loadExample}>Charger exemple</button>
             </div>
         )

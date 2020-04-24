@@ -1,0 +1,60 @@
+.booker {
+  position: relative;
+  @include flex-column();
+  padding: 20px;
+  border: 1px solid $color-grey-light;
+  border-radius: 10px;
+
+  &.visible {
+    display: block;
+    max-width: 500px;
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  &--close {
+    @include flex-row(flex-end, null);
+    cursor: pointer;
+  }
+
+  &-form {
+
+    textarea {
+      width: 100%;
+    }
+
+    &--prompt {
+      color: $color-grey;
+    }
+
+    &--colors {
+      @include flex-row();
+      flex-wrap: wrap;
+    }
+
+    &--color {
+      @include flex-row(center, null);
+      flex-basis: 20%;
+      margin: 5px 1px;
+      cursor: pointer;
+      position: relative;
+
+      &.selected::before {
+        content: '\e00b';
+        position: absolute;
+        top: calc(50% - 14px / 2);
+        font-family: $font-family-icons;
+        font-size: 14px;
+        color: $color-white;
+
+      }
+    }
+    &--colorPicker{
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+  }
+}

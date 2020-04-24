@@ -1,25 +1,20 @@
-import React, {Component} from "react";
+import React from "react";
 
 import BookerForm from "./BookerForm";
-import students from '../example'
 
-class Booker extends Component {
-    state = {
-        isDisplayed: false
-    }
+const Booker = ({selectedDate, selectedOption, events, isDisplayed, handleClose}) => {
 
-    render() {
-        const {selectedDate, selectedOption} = this.props;
-        return (
-            <div>
-                <BookerForm
-                    selectedDate={selectedDate}
-                    isDisplayed={this.state.isDisplayed}
-                    selectedOption={selectedOption} />
-            </div>
-        )
-    }
-
+    return (
+        <div>
+            <BookerForm
+                selectedDate={selectedDate}
+                isDisplayed={isDisplayed}
+                selectedOption={selectedOption}
+                events={events}
+                handleClose={handleClose}/>
+        </div>
+    )
 }
+
 
 export default Booker;
